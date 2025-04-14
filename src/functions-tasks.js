@@ -91,7 +91,7 @@ function getPolynom(...args) {
     return null;
   }
 
-  return function (x) {
+  return (x) => {
     return args.reduce((result, coeff, index) => {
       return result + coeff * x ** (args.length - index - 1);
     }, 0);
@@ -115,7 +115,7 @@ function getPolynom(...args) {
 function memoize(func) {
   const cache = new Map();
 
-  return function (...args) {
+  return (...args) => {
     const key = JSON.stringify(args);
 
     if (cache.has(key)) {
@@ -182,7 +182,7 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-  return function (...args) {
+  return (...args) => {
     const argStr = args.map((a) => JSON.stringify(a)).join(',');
     const fnName = func.name;
     logFunc(`${fnName}(${argStr}) starts`);
